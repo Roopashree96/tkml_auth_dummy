@@ -34,4 +34,19 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  #
+
+TkmlAuth.configure do |config|
+  config.base_url = "http://localhost:3002"
+  config.site_token = "87fee119-5d3f-48a7-ba86-b2f3b6e4bfbe"
+  config.site_name = "Yeahh"
+  config.username_column = "username"
+  config.remote_column = "remote_id"
+  config.user_model = User
+  config.login_path = "/auth/sign_in"
+  config.email_from = "admin@awesome_site.com"
+  config.password_reset_destination = "http://localhost:3000/auth/password/reset"
+  config.redeem_invite_path = "http://localhost:3000/auth/invitation/accept"
+end
+
 end

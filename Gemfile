@@ -28,8 +28,11 @@ gem 'spring',        group: :development
 gem "pry-rails"
 
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
 
-#gem 'auth_engine', path: "./../auth_engine"
 gem 'tkml_auth', path: "./../tkml_auth"
 
 # Use ActiveModel has_secure_password

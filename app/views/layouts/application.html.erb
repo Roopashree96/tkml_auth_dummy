@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RbTest</title>
+  <title>Auth Gem Dummy App</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <%= content_tag :div, msg, :class => "flash_#{name}" %>
+    <% end %>
+  <% end %>
+
+  <% if current_user %>
+    <%= button_to 'Sign out', TkmlAuth::Engine.routes.url_helpers.sign_out_path, method: :delete %>
+  <% end %>
+  <ul>
+    <li>
+      <%= link_to "Private/Protected Area", private_index_path %>
+      <%= link_to "User Mgmt", TkmlAuth::Engine.routes.url_helpers.users_path %>
+      <%= link_to "My Account", TkmlAuth::Engine.routes.url_helpers.my_account_path %>
+    </li>
+  </ul>
+
+  <%= yield %>
 
 </body>
 </html>
